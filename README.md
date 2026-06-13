@@ -212,7 +212,7 @@ The dashboard was designed to provide executives with a complete overview of mar
 
 ### Executive Overview
 
-📷 INSERT EXECUTIVE DASHBOARD SCREENSHOT HERE
+![Executive Dashboard](screenshots/dashboard screenshot/page_executive.png)
 
 ---
 
