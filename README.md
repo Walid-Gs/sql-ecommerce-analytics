@@ -8,15 +8,15 @@ The objective was to simulate a real-world analytics workflow used by Data Analy
 
 The project includes:
 
-* Database Design
-* Data Import & Validation
-* Exploratory SQL Analysis
-* Customer Analytics
-* Product Analytics
-* Seller Analytics
-* Advanced Business Analytics
-* SQL Data Mart Creation
-* Interactive Power BI Dashboard
+- Database Design
+- Data Import & Validation
+- Exploratory SQL Analysis
+- Customer Analytics
+- Product Analytics
+- Seller Analytics
+- Advanced Business Analytics
+- SQL Data Mart Creation
+- Interactive Power BI Dashboard
 
 ---
 
@@ -26,12 +26,12 @@ E-commerce companies generate massive amounts of transactional data every day.
 
 Management needs answers to questions such as:
 
-* What drives revenue growth?
-* Which products generate the most profit?
-* Who are the most valuable customers?
-* Which sellers contribute most to marketplace performance?
-* How efficient are logistics operations?
-* What strategic actions can improve business performance?
+- What drives revenue growth?
+- Which products generate the most profit?
+- Who are the most valuable customers?
+- Which sellers contribute most to marketplace performance?
+- How efficient are logistics operations?
+- What strategic actions can improve business performance?
 
 This project addresses these questions through SQL analysis and interactive business intelligence dashboards.
 
@@ -43,13 +43,13 @@ Dataset: Olist Brazilian E-Commerce Dataset
 
 The dataset contains:
 
-* 100,000+ Orders
-* Customers
-* Sellers
-* Products
-* Payments
-* Reviews
-* Geolocation Data
+- 100,000+ Orders
+- Customers
+- Sellers
+- Products
+- Payments
+- Reviews
+- Geolocation Data
 
 ---
 
@@ -98,7 +98,7 @@ SQL-Ecommerce-Analytics/
 ├── docs/
 │   └── SQL_Ecommerce_Report.pdf
 │
-└── 
+└──
 ```
 
 ---
@@ -111,20 +111,19 @@ SQL-Ecommerce-Analytics/
 
 Key Metrics Analyzed:
 
-* Total Revenue
-* Total Orders
-* Total Customers
-* Average Order Value
-* Revenue by State
-* Monthly Revenue Trend
+- Total Revenue
+- Total Orders
+- Total Customers
+- Average Order Value
+- Revenue by State
+- Monthly Revenue Trend
 
 ### Key Insights
 
-* Revenue is concentrated in a limited number of states.
-* Order activity demonstrates strong marketplace engagement.
-* Average order value highlights opportunities for basket-size optimization.
-* Revenue trends reveal seasonal fluctuations and growth patterns.
-
+- Revenue is concentrated in a limited number of states.
+- Order activity demonstrates strong marketplace engagement.
+- Average order value highlights opportunities for basket-size optimization.
+- Revenue trends reveal seasonal fluctuations and growth patterns.
 
 ---
 
@@ -132,18 +131,17 @@ Key Metrics Analyzed:
 
 Analysis Performed:
 
-* Top Customers
-* Customer Lifetime Value
-* Geographic Distribution
-* Purchase Behavior
+- Top Customers
+- Customer Lifetime Value
+- Geographic Distribution
+- Purchase Behavior
 
 ### Key Insights
 
-* A small percentage of customers generate a significant portion of revenue.
-* High-value customers should be prioritized for retention strategies.
-* Customer concentration varies by region.
-* Increasing repeat purchase rates represents a major growth opportunity.
-
+- A small percentage of customers generate a significant portion of revenue.
+- High-value customers should be prioritized for retention strategies.
+- Customer concentration varies by region.
+- Increasing repeat purchase rates represents a major growth opportunity.
 
 ---
 
@@ -151,18 +149,17 @@ Analysis Performed:
 
 Analysis Performed:
 
-* Top Categories
-* Revenue by Category
-* Product Ratings
-* Product Performance
+- Top Categories
+- Revenue by Category
+- Product Ratings
+- Product Performance
 
 ### Key Insights
 
-* Revenue is concentrated among a limited number of categories.
-* Certain categories combine strong sales and high customer satisfaction.
-* Some high-revenue categories maintain weaker ratings and require monitoring.
-* Product portfolio diversification may reduce business risk.
-
+- Revenue is concentrated among a limited number of categories.
+- Certain categories combine strong sales and high customer satisfaction.
+- Some high-revenue categories maintain weaker ratings and require monitoring.
+- Product portfolio diversification may reduce business risk.
 
 ---
 
@@ -170,18 +167,17 @@ Analysis Performed:
 
 Analysis Performed:
 
-* Top Sellers
-* Revenue Contribution
-* Seller Ranking
-* Seller Review Performance
+- Top Sellers
+- Revenue Contribution
+- Seller Ranking
+- Seller Review Performance
 
 ### Key Insights
 
-* Marketplace revenue is strongly influenced by a small group of sellers.
-* Seller performance varies significantly across regions.
-* Some high-revenue sellers maintain below-average ratings.
-* Supporting emerging sellers may reduce concentration risk.
-
+- Marketplace revenue is strongly influenced by a small group of sellers.
+- Seller performance varies significantly across regions.
+- Some high-revenue sellers maintain below-average ratings.
+- Supporting emerging sellers may reduce concentration risk.
 
 ---
 
@@ -189,18 +185,17 @@ Analysis Performed:
 
 Analysis Performed:
 
-* Delivery Time Analysis
-* Delivery Distribution
-* Delivery Performance by Region
-* Operational Efficiency
+- Delivery Time Analysis
+- Delivery Distribution
+- Delivery Performance by Region
+- Operational Efficiency
 
 ### Key Insights
 
-* Most orders are delivered within an acceptable timeframe.
-* Delivery performance differs across geographic regions.
-* Long delivery times may negatively impact customer satisfaction.
-* Logistics optimization remains an opportunity for operational improvement.
-
+- Most orders are delivered within an acceptable timeframe.
+- Delivery performance differs across geographic regions.
+- Long delivery times may negatively impact customer satisfaction.
+- Logistics optimization remains an opportunity for operational improvement.
 
 ---
 
@@ -212,28 +207,35 @@ The dashboard was designed to provide executives with a complete overview of mar
 
 ### Executive Overview
 
-📷 INSERT EXECUTIVE DASHBOARD SCREENSHOT HERE
+<p align="center">
+  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page_executive.PNG" width="900">
+</p>
 
 ---
 
 ### Customer Analytics
 
-📷 INSERT CUSTOMER DASHBOARD SCREENSHOT HERE
+<p align="center">
+  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page customers.PNG" width="900">
+</p>
 
 ---
 
 ### Product Analytics
 
-📷 INSERT PRODUCT DASHBOARD SCREENSHOT HERE
+<p align="center">
+  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page product.PNG" width="900">
+</p>
 
 ---
 
 ### Seller Analytics
 
-📷 INSERT SELLER DASHBOARD SCREENSHOT HERE
+<p align="center">
+  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page sellers.PNG" width="900">
+</p>
 
 ---
-
 
 # 📊 Business Recommendations
 
@@ -241,23 +243,23 @@ Based on the analysis, the following recommendations are proposed:
 
 ### Customer Strategy
 
-* Develop loyalty programs targeting high-value customers.
-* Increase repeat purchase rates through personalized marketing.
+- Develop loyalty programs targeting high-value customers.
+- Increase repeat purchase rates through personalized marketing.
 
 ### Product Strategy
 
-* Focus inventory and promotional efforts on top-performing categories.
-* Improve quality control for low-rated categories.
+- Focus inventory and promotional efforts on top-performing categories.
+- Improve quality control for low-rated categories.
 
 ### Seller Strategy
 
-* Reduce dependence on top sellers by supporting smaller sellers.
-* Monitor seller ratings and operational performance.
+- Reduce dependence on top sellers by supporting smaller sellers.
+- Monitor seller ratings and operational performance.
 
 ### Operations Strategy
 
-* Optimize delivery performance in slower regions.
-* Investigate causes of delivery delays and fulfillment inefficiencies.
+- Optimize delivery performance in slower regions.
+- Investigate causes of delivery delays and fulfillment inefficiencies.
 
 ---
 
@@ -265,21 +267,21 @@ Based on the analysis, the following recommendations are proposed:
 
 This project demonstrates:
 
-* SQL Querying
-* Database Design
-* Data Cleaning
-* Data Validation
-* Joins
-* Aggregations
-* CTEs
-* Window Functions
-* Ranking Functions
-* Business Analytics
-* KPI Development
-* Dashboard Design
-* Data Storytelling
-* Power BI
-* DAX
+- SQL Querying
+- Database Design
+- Data Cleaning
+- Data Validation
+- Joins
+- Aggregations
+- CTEs
+- Window Functions
+- Ranking Functions
+- Business Analytics
+- KPI Development
+- Dashboard Design
+- Data Storytelling
+- Power BI
+- DAX
 
 ---
 
@@ -287,12 +289,12 @@ This project demonstrates:
 
 Future versions of the project may include:
 
-* RFM Customer Segmentation
-* Customer Churn Prediction
-* Revenue Forecasting
-* Recommendation Systems
-* Real-Time Dashboard Integration
-* Machine Learning Models
+- RFM Customer Segmentation
+- Customer Churn Prediction
+- Revenue Forecasting
+- Recommendation Systems
+- Real-Time Dashboard Integration
+- Machine Learning Models
 
 ---
 
