@@ -1,0 +1,98 @@
+/*
+-- ==========================================
+-- CUSTOMER ANALYSIS
+-- ==========================================
+*/
+
+
+/* Top 10 Customer State : */
+
+SELECT customer_state, COUNT(customer_id) as total_customer_by_state
+FROM customers
+GROUP BY customer_state
+order BY total_customer_by_state DESC
+LIMIT 10;
+
+/* Top 10 customer Cities : */
+
+SELECT customer_city, COUNT(customer_id) as total_customer_by_city
+FROM customers
+GROUP BY customer_city
+order BY total_customer_by_city DESC
+LIMIT 10;
+
+/* customer who placed and order: */
+
+SELECT COUNT(DISTINCT c.customer_id)
+FROM customers c
+INNER JOIN orders o 
+ON c.customer_id = o.customer_id;
+
+/* Average Orders By Customer : */
+
+SELECT ROUND(AVG(total_order_by_customer),0) as average_order_by_customer
+FROM
+(SELECT customer_id, COUNT(order_id) as total_order_by_customer
+FROM orders
+GROUP BY customer_id);
+
+/* repeat costumers : */
+
+SELECT COUNT(*) as repeat_customer
+FROM 
+(SELECT customer_id
+FROM orders
+GROUP BY customer_id
+HAVING COUNT(order_id) > 1
+);
+
+/* repeat customer rate: */
+
+SELECT COUNT(*) * 100 / (SELECT COUNT(DISTINCT customer_id) FROM orders)
+FROM 
+(SELECT customer_id
+FROM orders
+GROUP BY customer_id
+HAVING COUNT(order_id) > 1
+);
+
+/* top customers by revenue : */
+
+SELECT o.customer_id, ROUND(SUM(price),2) AS revenue_by_customer
+FROM orders o
+INNER JOIN order_items ot
+ON o.order_id = ot.order_id
+GROUP BY customer_id
+ORDER BY revenue_by_customer DESC
+LIMIT 10;
+
+/* Average revenue by customer : */
+
+SELECT ROUND(AVG(revenue_by_customer),2) as average_revenue_by_customer
+FROM
+(SELECT o.customer_id, ROUND(SUM(price),2) AS revenue_by_customer
+FROM orders o
+INNER JOIN order_items ot
+ON o.order_id = ot.order_id
+GROUP BY customer_id);
+
+/* average review score : */
+
+SELECT ROUND(AVG(review_score),2) as average_review_score
+FROM reviews;
+
+/* review score distribution : */
+
+SELECT review_score, COUNT(review_id) as total_reviews
+FROM reviews
+GROUP BY review_score
+ORDER BY review_score;
+
+/* average review by customer state: */
+
+SELECT c.customer_state, ROUND(AVG(r.review_score),2) as average_review_by_state
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN reviews r ON o.order_id = r.order_id
+GROUP BY c.customer_state;
+

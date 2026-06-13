@@ -1,0 +1,135 @@
+/* customers:*/
+
+SELECT Count(*) FROM customers;
+
+SELECT COUNT(*)
+FROM customers
+WHERE customer_id IS NULL;
+
+SELECT customer_id,
+       COUNT(*)
+FROM customers
+GROUP BY customer_id
+HAVING COUNT(*) > 1;
+
+/* products: */
+
+SELECT COUNT(*) FROM products;
+
+SELECT COUNT(*) FROM products WHERE product_id IS NULL;
+
+SELECT product_id,
+       COUNT(*)
+FROM products
+GROUP BY product_id
+HAVING COUNT(*) > 1;
+
+
+/* sellers: */
+
+SELECT COUNT(*) FROM sellers;
+
+SELECT COUNT(*) FROM sellers WHERE seller_id IS NULL;
+
+SELECT seller_id,
+       COUNT(*)
+FROM sellers
+GROUP BY seller_id
+HAVING COUNT(*) > 1;
+
+/* category_translation : */
+
+SELECT COUNT(*) FROM category_translation;
+
+
+
+/* geolocation : */
+
+SELECT COUNT(*) FROM geolocaton;
+
+
+/* orders: */
+
+SELECT COUNT(*) FROM orders;
+
+SELECT COUNT(*) FROM orders WHERE order_id IS NULL;
+
+SELECT order_id,
+       COUNT(*)
+FROM orders
+GROUP BY order_id
+HAVING COUNT(*) > 1;
+
+
+/* payments : */
+
+SELECT COUNT(*) FROM payments;
+
+SELECT COUNT(*)
+FROM payments
+WHERE order_id IS NULL;
+
+SELECT
+    order_id,
+    payment_sequential,
+    COUNT(*)
+FROM payments
+GROUP BY order_id, payment_sequential
+HAVING COUNT(*) > 1;
+
+SELECT COUNT(*)
+FROM payments
+WHERE payment_value < 0;
+
+
+/* reviews : */
+
+SELECT COUNT(*)
+FROM reviews;
+
+SELECT COUNT(*)
+FROM reviews
+WHERE order_id IS NULL;
+
+SELECT COUNT(*)
+FROM reviews
+WHERE review_score IS NULL;
+
+SELECT
+    review_id,
+    order_id,
+    COUNT(*)
+FROM reviews
+GROUP BY review_id, order_id
+HAVING COUNT(*) > 1;
+
+
+/* order_items : */
+
+SELECT COUNT(*)
+FROM order_items;
+
+SELECT COUNT(*)
+FROM order_items
+WHERE order_id IS NULL;
+
+SELECT COUNT(*)
+FROM order_items
+WHERE product_id IS NULL;
+
+SELECT
+    order_id,
+    order_item_id,
+    COUNT(*)
+FROM order_items
+GROUP BY order_id, order_item_id
+HAVING COUNT(*) > 1;
+
+SELECT COUNT(*)
+FROM order_items
+WHERE price < 0;
+
+SELECT COUNT(*)
+FROM order_items
+WHERE freight_value < 0;
+

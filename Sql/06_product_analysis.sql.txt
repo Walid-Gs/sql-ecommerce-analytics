@@ -1,0 +1,103 @@
+/*
+-- ==========================================
+-- PRODUCT ANALYSIS
+-- ==========================================
+*/
+
+
+/* total number of product category : */
+
+SELECT COUNT(DISTINCT product_category_name) as total_categories
+FROM products;
+
+/* top 10 best-selling categories : */
+
+SELECT p.product_category_name, COUNT(oi.order_id) as total_orders_by_category
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_category_name
+ORDER BY total_orders_by_category DESC
+LIMIT 10;
+
+/* top 10 revenue categories : */
+
+SELECT p.product_category_name, ROUND(SUM(oi.price),2) as revenue_by_category
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_category_name
+ORDER BY revenue_by_category DESC
+LIMIT 10;
+
+/* average product price bycategory: */
+
+SELECT p.product_category_name, ROUND(AVG(oi.price),2) as avg_price_by_category
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_category_name
+ORDER BY avg_price_by_category DESC;
+
+/* sme but with english category names: */
+
+SELECT c.product_category_name_english, ROUND(AVG(oi.price),2) as avg_price_by_category
+FROM category_translation c
+INNER JOIN products p ON c.product_category_name = p.product_category_name
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY c.product_category_name_english
+ORDER BY avg_price_by_category DESC;
+
+/* top 10 individial product by revenue : */
+
+SELECT product_id, ROUND(SUM(price),2) as revenue_by_product
+FROM order_items
+GROUP BY product_id
+ORDER BY revenue_by_product DESC
+LIMIT 10;
+
+/* top 10 product by quantty sold : */
+
+SELECT p.product_id, COUNT(oi.order_id) as quantity_sold_by_product
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_id
+ORDER BY quantity_sold_by_product DESC
+LIMIT 10;
+
+/* product category revenue contribution rate % : */
+
+SELECT p.product_category_name, ROUND(SUM(oi.price) * 100 / (SELECT SUM(price) FROM order_items), 2) 
+as category_revenue_rate
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_category_name
+ORDER BY category_revenue_rate DESC;
+
+/* highest product category review score : */
+
+SELECT p.product_category_name, ROUND(AVG(r.review_score), 2) as avg_category_review_score
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+INNER JOIN reviews r ON oi.order_id = r.order_id
+GROUP BY p.product_category_name
+ORDER BY avg_category_review_score DESC
+LIMIT 10;
+
+/* categories with loest review score ? */
+
+SELECT p.product_category_name, ROUND(AVG(r.review_score), 2) as avg_category_review_score
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+INNER JOIN reviews r ON oi.order_id = r.order_id
+GROUP BY p.product_category_name
+ORDER BY avg_category_review_score ASC
+LIMIT 10;
+
+/* revenue vs customer satisftaction : */
+
+SELECT p.product_category_name, ROUND(SUM(oi.price), 2) as category_revenue, ROUND(AVG(r.review_score), 2) 
+as avg_category_review
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+INNER JOIN reviews r ON oi.order_id = r.order_id
+GROUP BY p.product_category_name
+ORDER BY category_revenue DESC;
+

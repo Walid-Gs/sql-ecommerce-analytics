@@ -1,0 +1,208 @@
+/*
+-- ==========================================
+-- SELLER ANALYTICS
+-- ==========================================
+*/
+
+
+/* Total sellers : */
+
+SELECT COUNT(*) FROM sellers;
+
+
+/* top 10 sellers by revenue : */
+
+SELECT seller_id, ROUND(SUM(price),2) as revenue_by_seller
+FROM order_items
+GROUP BY seller_id
+ORDER BY revenue_by_seller DESC
+LIMIT 10;
+
+/* top 10 sellers by number of orders : */
+
+SELECT seller_id, COUNT(DISTINCT order_id) as total_orders
+FROM order_items
+GROUP BY seller_id
+ORDER BY total_orders DESC
+LIMIT 10;
+
+/* Average revenue per seller : */
+
+SELECT ROUND(AVG(total_revenue),2) as average_revenue_per_seller
+FROM
+(SELECT seller_id, ROUND(SUM(price),2) AS total_revenue
+FROM order_items
+GROUP BY seller_id);
+
+/* same query using CTE : */
+
+WITH revenue_cte as
+(
+SELECT seller_id, ROUND(SUM(price),2) as total_revenue
+FROM order_items
+GROUP BY seller_id
+)
+
+SELECT ROUND(AVG(total_revenue),2) as average_revenue_per_seller
+FROM revenue_cte;
+
+/* seller revenue ranking : */
+
+WITH revenue_cte as
+(
+SELECT seller_id, ROUND(SUM(price),2) as total_revenue
+FROM order_items
+GROUP BY seller_id
+)
+
+SELECT seller_id,
+	total_revenue,
+	RANK() OVER (
+		ORDER BY total_revenue DESC
+	) AS seller_rank
+FROM revenue_cte
+ORDER BY seller_rank;
+
+/*same but usng dense rank :
+so if there is a tie we got no gap ranking : */
+
+WITH revenue_cte as
+(
+SELECT seller_id, ROUND(SUM(price),2) as total_revenue
+FROM order_items
+GROUP BY seller_id
+)
+
+SELECT seller_id,
+	total_revenue,
+	DENSE_RANK() OVER (
+		ORDER BY total_revenue DESC
+	) AS seller_rank
+FROM revenue_cte
+ORDER BY seller_rank;
+
+/* top seller by state : */
+
+WITH seller_revenue AS
+(
+	SELECT s.seller_state, oi.seller_id, ROUND(SUM(oi.price),2) AS revenue
+	FROM sellers s
+	INNER JOIN order_items oi ON s.seller_id = oi.seller_id
+	GROUP BY s.seller_state, oi.seller_id
+),
+
+ranked_sellers AS
+(
+	SELECT *,
+		ROW_NUMBER() OVER (
+			PARTITION BY seller_state
+			ORDER BY revenue DESC
+		) AS rn
+	FROM seller_revenue
+)
+
+SELECT * FROM ranked_sellers WHERE rn = 1;
+
+
+/* top sellers revenue share: */
+
+WITH seller_revenue AS 
+(
+	SELECT seller_id, ROUND(SUM(price),2) as revenue
+	FROM order_items
+	GROUP BY seller_id
+	ORDER BY revenue DESC
+	LIMIT 10
+)
+
+SELECT ROUND(SUM(revenue) * 100 / (SELECT SUM(price) FROM order_items),2) As top_sellers_revenue_share
+FROM seller_revenue;
+
+/* Seller review performance : */
+
+SELECT oi.seller_id, ROUND(AVG(r.review_score),2) as avg_review
+FROM order_items oi
+INNER JOIN reviews r ON oi.order_id = r.order_id
+GROUP BY oi.seller_id
+ORDER BY avg_review DESC;
+
+/* best sellers with high reviews: */
+
+WITH seller_metrics AS
+(
+	SELECT oi.seller_id,
+		ROUND(SUM(oi.price),2) AS revenue,
+		ROUND(AVG(r.review_score),2) AS avg_review
+	FROM order_items oi
+	INNER JOIN reviews r ON oi.order_id = r.order_id
+	GROUP BY oi.seller_id
+)
+
+SELECT * 
+FROM seller_metrics 
+WHERE revenue > 50000
+ORDER BY avg_review DESC
+LIMIT 10;
+
+/* High revenue but lo reviews : */
+
+WITH seller_metrics AS
+(
+	SELECT oi.seller_id,
+		ROUND(SUM(oi.price),2) AS revenue,
+		ROUND(AVG(r.review_score),2) AS avg_review
+	FROM order_items oi
+	INNER JOIN reviews r ON oi.order_id = r.order_id
+	GROUP BY oi.seller_id
+)
+
+SELECT * 
+FROM seller_metrics 
+WHERE revenue > 50000
+ORDER BY avg_review ASC
+LIMIT 10;
+
+/* sellers delivery performance : */
+
+SELECT oi.seller_id,
+		AVG(
+			o.order_delivered_customer_date - o.order_purchase_timestamp
+		)  AS avg_delivery_time
+FROM order_items oi
+INNER JOIN orders o ON oi.order_id = o.order_id
+WHERE o.order_delivered_customer_date IS NOT NULL
+GROUP BY oi.seller_id
+ORDER BY avg_delivery_time ASC;
+
+/* sellers delivery performance vs sellers reviews : */
+
+SELECT oi.seller_id,
+		AVG(
+			o.order_delivered_customer_date - o.order_purchase_timestamp
+		)  AS avg_delivery_time,
+		ROUND(
+			AVG(r.review_score), 2
+		)
+FROM order_items oi
+INNER JOIN orders o ON oi.order_id = o.order_id
+INNER JOIN reviews r ON oi.order_id = r.order_id
+WHERE o.order_delivered_customer_date IS NOT NULL
+GROUP BY oi.seller_id
+ORDER BY avg_delivery_time ASC
+LIMIT 5;
+
+/* seller revenue vs delivery speed : */
+
+SELECT oi.seller_id,
+		ROUND(
+			SUM(oi.price), 2
+		) AS revenue,
+		AVG(
+			o.order_delivered_customer_date - o.order_purchase_timestamp
+		)  AS avg_delivery_time
+		
+FROM order_items oi
+INNER JOIN orders o ON oi.order_id = o.order_id
+WHERE o.order_delivered_customer_date IS NOT NULL
+GROUP BY oi.seller_id;
+

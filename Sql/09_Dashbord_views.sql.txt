@@ -1,0 +1,107 @@
+/*
+-- =====================================
+-- DASHBOARD DATA MART
+-- =====================================
+*/
+
+/* view 1 - Monthly Revenue: */
+
+CREATE OR REPLACE VIEW vw_monthly_revenue AS
+SELECT DATE_TRUNC('month', o.order_purchase_timestamp) AS month,
+	ROUND(SUM(oi.price),2) AS revenue,
+	COUNT(DISTINCT o.order_id) AS total_orders
+FROM orders o 
+INNER JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY month
+ORDER BY month;
+
+/* view 2 - customers summary : */
+
+CREATE OR REPLACE VIEW vw_customer_summary AS
+SELECT c.customer_id,
+	c.customer_state,
+	COUNT(DISTINCT o.order_id) AS total_orders,
+	ROUND(
+		COALESCE(
+			SUM(oi.price),
+			0
+		),
+		2
+	) AS total_spent
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+LEFT JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY c.customer_id, c.customer_state;
+
+/* view 3 - Product performance : */
+
+CREATE OR REPLACE VIEW vw_product_performance AS
+SELECT p.product_id,
+	p.product_category_name,
+	COUNT(oi.order_id) AS units_sold,
+	ROUND(
+		SUM(oi.price),
+		2
+	) AS revenue,
+	ROUND(
+		AVG(oi.price),
+		2
+	) AS average_price
+FROM products p
+LEFT JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_id, p.product_category_name;
+
+/* view 4 - Seller performance : */
+
+CREATE OR REPLACE VIEW vw_seller_performance AS 
+SELECT s.seller_id,
+	s.seller_state,
+	COUNT(DISTINCT oi.order_id) AS total_orders,
+	ROUND(
+		SUM(oi.price),
+		2
+	) AS revenue,
+	ROUND(
+		AVG(r.review_score),
+		2
+	) AS average_reviews
+FROM sellers s
+INNER JOIN order_items oi ON s.seller_id = oi.seller_id
+LEFT JOIN reviews r ON oi.order_id = r.order_id
+GROUP BY s.seller_id, s.seller_state;
+
+/* view 5 - delivery performance: */
+
+CREATE OR REPLACE VIEW vw_delivery_performance AS
+SELECT order_id,
+	order_purchase_timestamp,
+	order_delivered_customer_date,
+	ROUND(
+		EXTRACT(
+			DAY FROM(
+				order_delivered_customer_date - order_purchase_timestamp
+			)
+		),
+		2
+	) AS delivery_days
+FROM orders
+WHERE order_delivered_customer_date IS NOT NULL;
+
+/* view 6 - category performance : */
+
+CREATE OR REPLACE VIEW vw_category_performance AS 
+SELECT p.product_category_name,
+	COUNT(DISTINCT oi.order_id) AS total_orders,
+	ROUND(
+		SUM(oi.price),
+		2
+	) AS revenue,
+	ROUND(
+		AVG(r.review_score),
+		2
+	) AS average_reviews
+FROM products p
+INNER JOIN order_items oi ON p.product_id = oi.product_id
+LEFT JOIN reviews r ON oi.order_id = r.order_id
+GROUP BY p.product_category_name;
+

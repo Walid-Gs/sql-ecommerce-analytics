@@ -1,0 +1,82 @@
+/*
+-- ==========================================
+-- DATABASE OVERVIEW
+-- ==========================================
+*/
+
+
+/* How many customers do we have? */ 
+
+SELECT COUNT(*) AS total_customers
+FROM customers;
+
+/* How many orders ? */
+
+SELECT COUNT(*) AS total_orders
+FROM orders;
+
+/*  How many product we have ? */
+
+SELECT COUNT(*) AS total_products
+FROM products;
+
+/* How many sellers ? */
+
+SELECT COUNT(*) AS total_sellers
+FROM sellers;
+
+/* what is the total revenue generated ? */
+
+SELECT ROUND(SUM(price),2) AS total_revenue
+FROM order_items;
+
+/* what is the average order value ? */
+
+SELECT ROUND(
+	SUM(price)/COUNT(DISTINCT order_id),
+	2
+) AS average_order_vlue
+FROM order_items;
+
+/* What is the average items per order ? */
+
+SELECT ROUND(AVG(items_per_order),0) AS average_item_per_order
+FROM 
+(
+	SELECT order_id, COUNT(order_item_id) AS items_per_order
+	FROM order_items
+	GROUP BY order_id
+);
+
+/* getting the orders by status ? */
+
+SELECT order_status,
+      COUNT(order_id) AS orders_by_status
+FROM orders
+GROUP BY order_status
+ORDER BY orders_by_status
+
+/* what is revenue including the shipping cost ?  */
+
+SELECT ROUND (
+	SUM(price + freight_value),
+	2
+) AS total_businnes_revenue
+FROM order_items;
+
+/* What is the shipping percentage contribution to total revenue? */
+
+SELECT ROUND (
+	SUM(freight_value) * 100 /
+	SUM(price + freight_value), 2
+	
+) AS shipping_percentage
+FROM order_items;
+
+
+
+
+
+
+
+
