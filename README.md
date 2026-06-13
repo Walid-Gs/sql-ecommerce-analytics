@@ -1,229 +1,307 @@
-# SQL E-Commerce Analytics & Power BI Dashboard
+# 🛒 SQL E-Commerce Analytics & Power BI Dashboard
 
-## Project Overview
+## 📌 Project Overview
 
-This project is a complete end-to-end Business Intelligence and Analytics solution built using PostgreSQL and Power BI on the Brazilian Olist E-Commerce dataset.
+This project is a complete end-to-end Business Intelligence solution built using PostgreSQL and Power BI on the Brazilian Olist E-Commerce dataset.
 
 The objective was to simulate a real-world analytics workflow used by Data Analysts and Business Intelligence professionals, starting from raw transactional data and ending with executive-level dashboards and business recommendations.
 
-The project covers:
+The project includes:
 
-* Database design and schema creation
-* Data loading and validation
+* Database Design
+* Data Import & Validation
 * Exploratory SQL Analysis
 * Customer Analytics
 * Product Analytics
 * Seller Analytics
 * Advanced Business Analytics
-* Data Mart creation using SQL Views
-* Interactive Power BI dashboards
+* SQL Data Mart Creation
+* Interactive Power BI Dashboard
 
 ---
 
-## Business Objectives
+# 🏢 Business Problem
 
-The goal of this project is to answer key business questions such as:
+E-commerce companies generate massive amounts of transactional data every day.
 
-* How is the company performing over time?
-* Which products generate the most revenue?
-* Which customers contribute the most value?
-* Who are the best-performing sellers?
-* What drives customer satisfaction?
-* How efficient is the delivery process?
-* Which business areas should management focus on?
+Management needs answers to questions such as:
+
+* What drives revenue growth?
+* Which products generate the most profit?
+* Who are the most valuable customers?
+* Which sellers contribute most to marketplace performance?
+* How efficient are logistics operations?
+* What strategic actions can improve business performance?
+
+This project addresses these questions through SQL analysis and interactive business intelligence dashboards.
 
 ---
 
-## Dataset
+# 📊 Dataset
 
 Dataset: Olist Brazilian E-Commerce Dataset
 
-The dataset contains information about:
+The dataset contains:
 
+* 100,000+ Orders
 * Customers
-* Orders
-* Payments
-* Products
 * Sellers
+* Products
+* Payments
 * Reviews
-* Geolocation
-* Product Categories
-
-Total records: 100,000+ orders
+* Geolocation Data
 
 ---
 
-## Database Design
+# 🛠️ Technologies Used
 
-The project was built in PostgreSQL using a relational data model.
-
-Main Tables:
-
-* customers
-* orders
-* order_items
-* order_payments
-* order_reviews
-* products
-* sellers
-* geolocation
-* product_category_translation
-
-Relationships were implemented using primary keys and foreign keys to ensure data integrity.
+| Technology | Purpose                 |
+| ---------- | ----------------------- |
+| PostgreSQL | Database & SQL Analysis |
+| pgAdmin    | Database Management     |
+| SQL        | Data Analysis           |
+| Power BI   | Dashboard Development   |
+| DAX        | KPI Creation            |
+| Git        | Version Control         |
+| GitHub     | Project Portfolio       |
 
 ---
 
-## SQL Analysis
+---
 
-### Business EDA
+# 📂 Project Structure
 
-Key metrics analyzed:
+```text
+SQL-Ecommerce-Analytics/
+│
+├── README.md
+│
+├── sql/
+│   ├── 01_create_tables.sql
+│   ├── 02_load_data.sql
+│   ├── 03_data_validation.sql
+│   ├── 04_business_eda.sql
+│   ├── 05_customer_analysis.sql
+│   ├── 06_product_analysis.sql
+│   ├── 07_seller_analysis.sql
+│   ├── 08_advanced_business_analysis.sql
+│   └── 09_powerbi_views.sql
+│
+├── powerbi/
+│   └── Ecommerce_Analytics.pbix
+│
+├── screenshots/
+│   ├── dashboard/
+│   ├── sql_results/
+│
+│
+├── docs/
+│   └── SQL_Ecommerce_Report.pdf
+│
+└── 
+```
+
+---
+
+# 🔍 SQL Analysis
+
+---
+
+## 1. Business EDA
+
+Key Metrics Analyzed:
 
 * Total Revenue
 * Total Orders
 * Total Customers
 * Average Order Value
 * Revenue by State
-* Revenue by Payment Type
-* Monthly Performance
+* Monthly Revenue Trend
 
-### Customer Analytics
+### Key Insights
 
-Analysis included:
+* Revenue is concentrated in a limited number of states.
+* Order activity demonstrates strong marketplace engagement.
+* Average order value highlights opportunities for basket-size optimization.
+* Revenue trends reveal seasonal fluctuations and growth patterns.
+
+
+---
+
+## 2. Customer Analytics
+
+Analysis Performed:
 
 * Top Customers
 * Customer Lifetime Value
-* Customer Segmentation
 * Geographic Distribution
-* Customer Purchase Behavior
+* Purchase Behavior
 
-### Product Analytics
+### Key Insights
 
-Analysis included:
+* A small percentage of customers generate a significant portion of revenue.
+* High-value customers should be prioritized for retention strategies.
+* Customer concentration varies by region.
+* Increasing repeat purchase rates represents a major growth opportunity.
 
-* Top Categories by Revenue
-* Best-Selling Products
-* Category Revenue Contribution
-* Product Satisfaction Analysis
-* Revenue vs Customer Ratings
 
-### Seller Analytics
+---
 
-Analysis included:
+## 3. Product Analytics
 
-* Top Sellers by Revenue
-* Top Sellers by Order Volume
-* Revenue Share Analysis
-* Seller Rankings
+Analysis Performed:
+
+* Top Categories
+* Revenue by Category
+* Product Ratings
+* Product Performance
+
+### Key Insights
+
+* Revenue is concentrated among a limited number of categories.
+* Certain categories combine strong sales and high customer satisfaction.
+* Some high-revenue categories maintain weaker ratings and require monitoring.
+* Product portfolio diversification may reduce business risk.
+
+
+---
+
+## 4. Seller Analytics
+
+Analysis Performed:
+
+* Top Sellers
+* Revenue Contribution
+* Seller Ranking
 * Seller Review Performance
-* Delivery Performance Analysis
 
-### Advanced Business Analytics
+### Key Insights
 
-Advanced SQL techniques used:
+* Marketplace revenue is strongly influenced by a small group of sellers.
+* Seller performance varies significantly across regions.
+* Some high-revenue sellers maintain below-average ratings.
+* Supporting emerging sellers may reduce concentration risk.
 
-* CTEs
-* Window Functions
-* Ranking Functions
-* Running Totals
-* Moving Averages
-* Month-over-Month Growth
-* Revenue Trends
 
 ---
 
-## Data Mart Creation
+## 5. Logistics & Delivery Analytics
 
-To optimize dashboard development, multiple analytical views were created:
+Analysis Performed:
 
-* vw_monthly_revenue
-* vw_customer_summary
-* vw_product_performance
-* vw_seller_performance
-* vw_delivery_performance
-* vw_category_performance
+* Delivery Time Analysis
+* Delivery Distribution
+* Delivery Performance by Region
+* Operational Efficiency
 
-These views act as a reporting layer between the database and Power BI.
+### Key Insights
+
+* Most orders are delivered within an acceptable timeframe.
+* Delivery performance differs across geographic regions.
+* Long delivery times may negatively impact customer satisfaction.
+* Logistics optimization remains an opportunity for operational improvement.
+
 
 ---
 
-## Power BI Dashboard
+# 📈 Power BI Dashboard
 
-The dashboard consists of:
+The dashboard was designed to provide executives with a complete overview of marketplace performance.
+
+### Dashboard Pages
 
 ### Executive Overview
 
-High-level KPIs and business performance.
+📷 INSERT EXECUTIVE DASHBOARD SCREENSHOT HERE
+
+---
 
 ### Customer Analytics
 
-Customer value, segmentation, and geographic distribution.
+📷 INSERT CUSTOMER DASHBOARD SCREENSHOT HERE
+
+---
 
 ### Product Analytics
 
-Category performance, revenue contribution, and customer satisfaction.
+📷 INSERT PRODUCT DASHBOARD SCREENSHOT HERE
+
+---
 
 ### Seller Analytics
 
-Seller performance, rankings, revenue share, and review quality.
-
-
----
-
-## Key Insights
-
-* Revenue is concentrated among a limited number of product categories.
-* Several high-revenue categories maintain strong customer satisfaction.
-* Some categories generate substantial revenue despite low review scores, representing operational risk.
-* Seller performance varies significantly across regions.
-* Faster delivery performance is generally associated with better customer ratings.
-* Business growth trends indicate strong scalability opportunities.
+📷 INSERT SELLER DASHBOARD SCREENSHOT HERE
 
 ---
 
-## Technologies Used
 
-* PostgreSQL
-* SQL
-* pgAdmin
-* Power BI
-* DAX
-* Git
-* GitHub
+# 📊 Business Recommendations
+
+Based on the analysis, the following recommendations are proposed:
+
+### Customer Strategy
+
+* Develop loyalty programs targeting high-value customers.
+* Increase repeat purchase rates through personalized marketing.
+
+### Product Strategy
+
+* Focus inventory and promotional efforts on top-performing categories.
+* Improve quality control for low-rated categories.
+
+### Seller Strategy
+
+* Reduce dependence on top sellers by supporting smaller sellers.
+* Monitor seller ratings and operational performance.
+
+### Operations Strategy
+
+* Optimize delivery performance in slower regions.
+* Investigate causes of delivery delays and fulfillment inefficiencies.
 
 ---
 
-## Skills Demonstrated
+# 🎯 Skills Demonstrated
+
+This project demonstrates:
 
 * SQL Querying
+* Database Design
 * Data Cleaning
 * Data Validation
 * Joins
 * Aggregations
 * CTEs
 * Window Functions
-* Ranking
+* Ranking Functions
 * Business Analytics
 * KPI Development
-* Data Modeling
 * Dashboard Design
 * Data Storytelling
+* Power BI
+* DAX
 
 ---
 
-## Future Improvements
+# 🚀 Future Improvements
 
-* Customer Segmentation using RFM Analysis
-* Forecasting Models
-* Churn Prediction
+Future versions of the project may include:
+
+* RFM Customer Segmentation
+* Customer Churn Prediction
+* Revenue Forecasting
 * Recommendation Systems
 * Real-Time Dashboard Integration
+* Machine Learning Models
 
 ---
 
-## Author
+# 👨‍💻 Author
 
-Oualid GASMI
+**Oualid GASMI**
 
-Aspiring Data Analyst & Data Scientist
+Aspiring Data Analyst | Data Scientist | Business Intelligence Analyst
 
+---
+
+⭐ If you found this project useful, feel free to star the repository.
