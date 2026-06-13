@@ -207,16 +207,19 @@ The dashboard was designed to provide executives with a complete overview of mar
 
 ### Executive Overview
 
+<<<<<<< HEAD
+
 <p align="center">
-  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page_executive.PNG" width="900">
+  <img src="screenshots\dashboard screenshot\page_executive.PNG" width="900">
 </p>
+=======
 
 ---
 
 ### Customer Analytics
 
 <p align="center">
-  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page customers.PNG" width="900">
+  <img src="screenshots\dashboard screenshot\page customers.PNG" width="900">
 </p>
 
 ---
@@ -224,7 +227,7 @@ The dashboard was designed to provide executives with a complete overview of mar
 ### Product Analytics
 
 <p align="center">
-  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page product.PNG" width="900">
+  <img src="screenshots\dashboard screenshot\page product.PNG" width="900">
 </p>
 
 ---
@@ -232,7 +235,7 @@ The dashboard was designed to provide executives with a complete overview of mar
 ### Seller Analytics
 
 <p align="center">
-  <img src="c:\Users\walid\OneDrive\Documents\Data analysist path\Portofolio Project\SQL Projects\Sql E-Commerce Analytics\screenshots\dashboard screenshot\page sellers.PNG" width="900">
+  <img src="screenshots\dashboard screenshot\page sellers.PNG" width="900">
 </p>
 
 ---
